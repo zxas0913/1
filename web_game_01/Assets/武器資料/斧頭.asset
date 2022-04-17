@@ -9,15 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: d6c646da565adc444888ed788b22fc3f, type: 3}
   m_Name: "\u65A7\u982D"
-  m_EditorClassIdentifier: Assembly-CSharp::Weapon/DateWeapon
+  m_EditorClassIdentifier: 
   spead: 500
   atack: 10
   contStart: 1
   countMax: 3
   interval: 3.5
   v3SpawnPoint:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: -0.3, y: 0, z: 0}
+  - {x: 0, y: 0.3, z: 0}
+  - {x: 0.3, y: 0, z: 0}
+  goWeapon: {fileID: 7671056000210684073, guid: 03598e3b4e643814cb530b1697224dc8, type: 3}
+  v3Direction: {x: 0, y: 0, z: 0}

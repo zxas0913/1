@@ -1,20 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Weapon;
 
-/// <summary>
-/// ªZ¾¹¨t²Î
-/// 1, ³]©wª±®a¨ú±oªºªZ¾¹
-/// 2, ¥Í¦¨ªZ¾¹
-/// 3, µo®gªZ¾¹
-/// 4, §ğÀ»¤OÀx¦s
-/// <summary>
+/// </summary>
+/// ï¿½Zï¿½ï¿½ï¿½tï¿½ï¿½
+/// 1, ï¿½]ï¿½wï¿½ï¿½ï¿½aï¿½ï¿½ï¿½oï¿½ï¿½ï¿½Zï¿½ï¿½
+/// 2, ï¿½Í¦ï¿½ï¿½Zï¿½ï¿½
+/// 3, ï¿½oï¿½gï¿½Zï¿½ï¿½
+/// 4, ï¿½ï¿½ï¿½ï¿½ï¿½Oï¿½xï¿½s
+/// </summary>
 public class WeaponSys : MonoBehaviour
 {
-    [SerializeField, Header("ªZ¾¹¸ê®Æ")]
+    [SerializeField, Header("ï¿½Zï¿½ï¿½ï¿½ï¿½ï¿½")]
     private DateWeapon dateWeapon;
+
+    /// <summary>
+    /// è¨ˆæ™‚å™¨
+    /// </summary>
+    private float timer;
    
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = new Color(1, 0, 0, 0.5f);
+        
+        for (int i = 0; i < dateWeapon.v3SpawnPoint.Length; i++)
+        {
+          Gizmos.DrawWireSphere(transform.position + dateWeapon.v3SpawnPoint[i], 0.1f);  
+        }
+        
+    }
+    private void Start()
+    {
+        Physics2D.IgnoreLayerCollision(3,6);
+        Physics2D.IgnoreLayerCollision(6,6);
+        Physics2D.IgnoreLayerCollision(6,7);
+    }
+    private void Update()
+    {
+        SpawnWeapon();
+    }
+    private void SpawnWeapon()
+    {
+        timer += Time.deltaTime;
+        ///print("ç¶“éçš„æ™‚é–“ : " + timer);
+        if (timer >= dateWeapon.interval)
+        {
+            //print("ç”Ÿæˆæ­¦å™¨");
+            int random = Random.Range(0, dateWeapon.v3SpawnPoint.Length);
+            Vector3 pos = transform.position + dateWeapon.v3SpawnPoint[0];
+            GameObject temp = Instantiate(dateWeapon.goWeapon, pos, Quaternion.identity);
+            temp.GetComponent<Rigidbody2D>().AddForce(dateWeapon.v3Direction * dateWeapon.spead);
+            timer = 0;
+        }
+    }
     
     
 }
