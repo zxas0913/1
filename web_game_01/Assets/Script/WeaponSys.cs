@@ -13,6 +13,9 @@ public class WeaponSys : MonoBehaviour
 {
     [SerializeField, Header("�Z�����")]
     private DateWeapon dateWeapon;
+    [SerializeField, Header("武器剩餘時間"), Range(0,10)]
+    private float destroyWeaponTime = 3.5f;
+    
 
     /// <summary>
     /// 計時器
@@ -51,6 +54,7 @@ public class WeaponSys : MonoBehaviour
             GameObject temp = Instantiate(dateWeapon.goWeapon, pos, Quaternion.identity);
             temp.GetComponent<Rigidbody2D>().AddForce(dateWeapon.v3Direction * dateWeapon.spead);
             timer = 0;
+            Destroy(temp, destroyWeaponTime);
         }
     }
     
